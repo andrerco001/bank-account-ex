@@ -1,6 +1,6 @@
 package br.com.dh.account;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import br.com.dh.customer.Customer;
 
@@ -30,10 +30,15 @@ public class CheckingAccount extends Account {
 	}
 
 	// methods
-	public void depositCheck(double amount, String bank, Date datePay) {
+	public void depositCheck(double amount, String bank, LocalDate payDate) {
 		
-		System.out.println("xxxxxxxxxxxx");
-
+		payDate = LocalDate.now();
+		
+		if(amount > 0 && (bank != null && bank != "") && payDate.getDayOfMonth() == 10) {
+			this.balance += amount;
+		} else {
+			System.out.println("The amount to be deposited must be greater than zero.!");
+		}
 	}
 
 	@Override

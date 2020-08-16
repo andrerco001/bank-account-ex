@@ -18,6 +18,10 @@ public class SavingAccount extends Account {
 		super(numberAccount, customer, balance, type);
 		this.interest = interest;
 	}
+	
+	public SavingAccount(int numberAccount, Customer customer, double balance, String type) {
+		super(numberAccount, customer, balance, type);
+	}
 
 	// getters and setters
 	public double getInterest() {
