@@ -1,20 +1,25 @@
 package br.com.dh.account;
 
+import java.util.Date;
+
+import br.com.dh.customer.Customer;
+
 public class CheckingAccount extends Account {
-	
+
 	// attributes
 	private double overdraftCheckLimit;
-	
-	// constructor methodes
+
+	// constructor methods
 	public CheckingAccount() {
-		
+
 	}
-	
-	public CheckingAccount(double overdraftCheckLimit) {
-		super();
+
+	public CheckingAccount(int numberAccount, Customer customer, double balance, Type type,
+			double overdraftCheckLimit) {
+		super(numberAccount, customer, balance, type);
 		this.overdraftCheckLimit = overdraftCheckLimit;
 	}
-	
+
 	// getters and setters
 	public double getOverdraftCheckLimit() {
 		return overdraftCheckLimit;
@@ -23,25 +28,28 @@ public class CheckingAccount extends Account {
 	public void setOverdraftCheckLimit(double overdraftCheckLimit) {
 		this.overdraftCheckLimit = overdraftCheckLimit;
 	}
-	
+
 	// methods
+	public void depositCheck(double amount, String bank, Date datePay) {
+		
+		System.out.println("xxxxxxxxxxxx");
 
-	@Override
-	public double currentBalance() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
-	public double depositCash(double amount) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void withdrawCash(double amount) {
+
+		if (this.getBalance() >= 0 && amount > 0 && amount < this.getBalance()) {
+			this.balance -= amount;
+		} else if (this.getBalance() < 0 && amount > 0) {
+
+			double amountoverdraftCheck = getOverdraftCheckLimit() - amount;
+			setOverdraftCheckLimit(amountoverdraftCheck);
+			this.balance -= amountoverdraftCheck;
+
+		} else {
+			System.out.println("Unable to withdraw. Check the amount informed.!");
+		}
 	}
 
-	@Override
-	public double withdrawCash(double amount) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }
