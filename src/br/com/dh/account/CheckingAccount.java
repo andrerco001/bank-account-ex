@@ -14,7 +14,7 @@ public class CheckingAccount extends Account {
 
 	}
 
-	public CheckingAccount(int numberAccount, Customer customer, double balance, Type type,
+	public CheckingAccount(int numberAccount, Customer customer, double balance, String type,
 			double overdraftCheckLimit) {
 		super(numberAccount, customer, balance, type);
 		this.overdraftCheckLimit = overdraftCheckLimit;
@@ -52,4 +52,9 @@ public class CheckingAccount extends Account {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "CheckingAccount [overdraftCheckLimit: " + overdraftCheckLimit + ", numberAccount: " + numberAccount
+				+ ", customer: " + customer + ", balance: " + balance + ", type: " + type + "]";
+	}
 }

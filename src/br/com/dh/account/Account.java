@@ -3,23 +3,18 @@ package br.com.dh.account;
 import br.com.dh.customer.Customer;
 
 public abstract class Account {
-
-	enum Type {
-
-		CHECKING, SAVING;
-	}
-
+	
 	// attributes
 	protected int numberAccount;
 	protected Customer customer;
 	protected double balance;
-	protected Type type;
+	protected String type;
 
 	public Account() {
 
 	}
 
-	public Account(int numberAccount, Customer customer, double balance, Type type) {
+	public Account(int numberAccount, Customer customer, double balance, String type) {
 		this.numberAccount = numberAccount;
 		this.customer = customer;
 		this.balance = balance;
@@ -47,11 +42,11 @@ public abstract class Account {
 		return balance;
 	}
 
-	public Type getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

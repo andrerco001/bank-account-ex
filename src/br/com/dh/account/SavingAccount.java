@@ -14,7 +14,7 @@ public class SavingAccount extends Account {
 
 	}
 
-	public SavingAccount(int numberAccount, Customer customer, double balance, Type type, double interest) {
+	public SavingAccount(int numberAccount, Customer customer, double balance, String type, double interest) {
 		super(numberAccount, customer, balance, type);
 		this.interest = interest;
 	}
@@ -36,4 +36,11 @@ public class SavingAccount extends Account {
 			this.balance -= getInterest();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "SavingAccount [ numberAccount: " + numberAccount + ", customer: " + customer + ", balance: " + balance
+				+ ", type: " + type + " ]";
+	}
+	
 }
