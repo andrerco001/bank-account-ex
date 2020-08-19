@@ -2,11 +2,13 @@ package br.com.dh.customer;
 
 public class Customer {
 	
+	// attributes
 	private int id;
 	private String lastname;
 	private int rg;
 	private String cpf;
 	
+	// constructor methods
 	public Customer() {
 	
 	}
@@ -18,6 +20,7 @@ public class Customer {
 		this.cpf = cpf;
 	}
 
+	// getters and setters
 	public int getId() {
 		return id;
 	}
@@ -50,6 +53,7 @@ public class Customer {
 		this.cpf = cpf;
 	}
 	
+	// methods
 	@Override
 	public String toString() {
 		return "Customer [ id: " + id + ", lastname: " + lastname + ", rg: " + rg + ", cpf: " + cpf + " ]";

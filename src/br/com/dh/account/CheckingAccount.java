@@ -14,7 +14,7 @@ public class CheckingAccount extends Account {
 
 	}
 
-	public CheckingAccount(int numberAccount, Customer customer, double balance, String type,
+	public CheckingAccount(int numberAccount, Customer customer, double balance, TypeAccount type,
 			double overdraftCheckLimit) {
 		super(numberAccount, customer, balance, type);
 		this.overdraftCheckLimit = overdraftCheckLimit;
@@ -44,13 +44,15 @@ public class CheckingAccount extends Account {
 	@Override
 	public void withdrawCash(double amount) {
 
-		if (this.getBalance() >= 0 && amount > 0 && amount < this.getBalance()) {
+		if (((this.balance - amount) >= 0) && amount > 0) {
 			this.balance -= amount;
-		} else if (this.getBalance() < 0 && amount > 0) {
+		} else if (this.balance < 0 && amount > 0) {
 
 			double amountoverdraftCheck = getOverdraftCheckLimit() - amount;
+			
 			setOverdraftCheckLimit(amountoverdraftCheck);
-			this.balance -= amountoverdraftCheck;
+			
+			System.out.println("Current overdraft balance " + this.getOverdraftCheckLimit()); 
 
 		} else {
 			System.out.println("Unable to withdraw. Check the amount informed.!");
@@ -59,7 +61,7 @@ public class CheckingAccount extends Account {
 
 	@Override
 	public String toString() {
-		return "CheckingAccount [overdraftCheckLimit: " + overdraftCheckLimit + ", numberAccount: " + numberAccount
-				+ ", customer: " + customer + ", balance: " + balance + ", type: " + type + "]";
+		return "CheckingAccount [ overdraftCheckLimit: " + overdraftCheckLimit + ", numberAccount: " + numberAccount
+				+ ", customer: " + customer + ", balance: " + balance + ", type: " + type.getName() + " ]";
 	}
 }

@@ -8,13 +8,14 @@ public abstract class Account {
 	protected int numberAccount;
 	protected Customer customer;
 	protected double balance;
-	protected String type;
+	protected TypeAccount type;
 
+	// constructor methods
 	public Account() {
 
 	}
 
-	public Account(int numberAccount, Customer customer, double balance, String type) {
+	public Account(int numberAccount, Customer customer, double balance, TypeAccount type) {
 		this.numberAccount = numberAccount;
 		this.customer = customer;
 		this.balance = balance;
@@ -42,24 +43,25 @@ public abstract class Account {
 		return balance;
 	}
 
-	public String getType() {
+	public TypeAccount getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TypeAccount type) {
 		this.type = type;
 	}
 
 	// methods
 	public double currentBalance() {
 
-		return this.getBalance();
+		return this.balance;
 	}
 
 	public void depositCash(double amount) {
 		
 		if(amount > 0) {
 			this.balance += amount;
+			System.out.println("New deposit: " + amount);
 		} else {
 			System.out.println("The amount to be deposited must be greater than zero.!");
 		}
@@ -67,10 +69,18 @@ public abstract class Account {
 
 	public void withdrawCash(double amount) {
 		
-		if(this.getBalance() >= 0 && amount > 0 && amount < this.getBalance()) {
+		if(((this.getBalance() - amount) >= 0) && amount > 0) {
 			this.balance -= amount;
 		} else {
 			System.out.println("Unable to withdraw. Check the amount informed.!");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Account [ numberAccount: " + numberAccount + ", customer: " + customer + ", balance: " + balance + ", type: "
+				+ type.getName() + " ]";
+	}
+	
+	
 }
